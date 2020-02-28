@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
+import { Button, Icon } from 'semantic-ui-react';
+import InputMask from "react-input-mask";
+
+import Navbar from './Navbar';
 
 class Edit extends Component {
 
@@ -67,34 +71,40 @@ class Edit extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">
-              EDIT FREIGHT
-            </h3>
-          </div>
-          <div className="panel-body">
-            <h4><Link to={`/show/${this.state.key}`} className="btn btn-primary">Freight List</Link></h4>
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label for="author">Author:</label>
-                <input type="text" className="form-control" name="author" value={this.state.author} onChange={this.onChange} placeholder="Author" />
-              </div>
-              <div className="form-group">
-                <label for="type">Type:</label>
-                <textarea className="form-control" name="type" onChange={this.onChange} placeholder="Freight type" cols="80" rows="3" value={this.state.type}></textarea>
-              </div>
-              <div className="form-group">
-                <label for="value">Value:</label>
-                <input type="text" className="form-control" name="value" value={this.state.value} onChange={this.onChange} placeholder="Value" />
-              </div>
-              <div className="form-group">
-                <label for="Date">Date:</label>
-                <input type="text" className="form-control" name="date" value={this.state.date} onChange={this.onChange} placeholder="Date" />
-              </div>
-              <button type="submit" className="btn btn-success">Submit</button>
-            </form>
+      <div>
+        <Navbar />
+        <Button as={Link} to={`/show/${this.state.key}`} icon labelPosition='left' style={{ margin: '0 0 20px 20px' }}>
+          <Icon name='angle left' />
+          Retornar para frete atual
+        </Button>
+        <div className="container">
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h3 className="panel-title" style={{ marginBottom: '15px' }}>
+                Editar frete
+              </h3>
+            </div>
+            <div className="panel-body">
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label for="author">Nome da transportadora:</label>
+                  <input type="text" className="form-control" name="author" value={this.state.author} onChange={this.onChange} placeholder="Logística SA" />
+                </div>
+                <div className="form-group">
+                  <label for="type">Tipo do frete:</label>
+                  <input type="text" className="form-control"name="type" value={this.state.type} onChange={this.onChange} placeholder="Tipo do frete" />
+                </div>
+                <div className="form-group">
+                  <label for="value">Valor do frete:</label>
+                  <input type="text" className="form-control" name="value" value={this.state.value} onChange={this.onChange} placeholder="1.000,00" />
+                </div>
+                <div className="form-group">
+                  <label for="Date">Date:</label>
+                  <InputMask className="form-control" name="date" mask="99/99/9999" onChange={this.onChange} value={this.state.date} placeholder="__/__/____"/>
+                </div>
+                <button type="submit" className="btn btn-success" style={{ float: 'right' }}>Enviar</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

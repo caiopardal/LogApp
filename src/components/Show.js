@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
+import { Button, Icon, Card } from 'semantic-ui-react';
+
+import Navbar from './Navbar';
 
 class Show extends Component {
 
@@ -38,26 +41,33 @@ class Show extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-          <h4><Link to="/">Freight List</Link></h4>
-            <h3 className="panel-title">
-              {this.state.freight.author}
-            </h3>
-          </div>
-          <div className="panel-body">
-            <dl>
-              <dt>Type:</dt>
-              <dd>{this.state.freight.type}</dd>
-              <dt>Value:</dt>
-              <dd>{this.state.freight.value}</dd>
-              <dt>Date:</dt>
-              <dd>{this.state.freight.date}</dd>
-            </dl>
-            <Link to={`/edit/${this.state.key}`} className="btn btn-success">Edit</Link>&nbsp;
-            <button onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button>
-          </div>
+      <div>
+        <Navbar />
+        <Button as={Link} to='/' icon labelPosition='left' style={{ margin: '0 0 40px 20px' }}>
+          <Icon name='angle left' />
+          Retornar para lista de fretes
+        </Button>
+        <div className="container">
+          <Card style={{ width: '500px' }}>
+            <Card.Content>
+              <Card.Header>Nome da transportadora: {this.state.freight.author}</Card.Header>
+              <Card.Meta>Tipo do frete: {this.state.freight.type}</Card.Meta>
+              <Card.Description style={{ display: 'grid'}}> 
+                <span>Valor: R${this.state.freight.value}</span>
+                <span>Data: {this.state.freight.date}</span>
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <Button as={Link} to={`/edit/${this.state.key}`} basic color='blue'>
+                  Editar
+                </Button>
+                <Button onClick={this.delete.bind(this, this.state.key)} basic color='red'>
+                  Excluir
+                </Button>
+              </div>
+            </Card.Content>
+          </Card>
         </div>
       </div>
     );

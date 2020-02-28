@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
+import { Button, Icon } from 'semantic-ui-react';
+import InputMask from "react-input-mask";
+
+import Navbar from './Navbar';
 
 class Create extends Component {
 
@@ -47,34 +51,40 @@ class Create extends Component {
   render() {
     const { type, value, date, author } = this.state;
     return (
-      <div className="container">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">
-              ADD FREIGHT
-            </h3>
-          </div>
-          <div className="panel-body">
-            <h4><Link to="/" className="btn btn-primary">Freight List</Link></h4>
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="author">Author:</label>
-                <input type="text" className="form-control" name="author" value={author} onChange={this.onChange} placeholder="Author" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="type">Type:</label>
-                <textarea className="form-control" name="type" onChange={this.onChange} placeholder="Freight type" cols="80" rows="3" value={type}></textarea>
-              </div>
-              <div className="form-group">
-                <label htmlFor="value">Value:</label>
-                <input type="text" className="form-control" name="value" value={value} onChange={this.onChange} placeholder="Value" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="Date">Date:</label>
-                <input type="text" className="form-control" name="date" value={date} onChange={this.onChange} placeholder="Date" />
-              </div>
-              <button type="submit" className="btn btn-success">Submit</button>
-            </form>
+      <div>
+        <Navbar />
+        <Button as={Link} to='/' icon labelPosition='left' style={{ margin: '0 0 20px 20px' }}>
+          <Icon name='angle left' />
+          Retornar para lista de fretes
+        </Button>
+        <div className="container">
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h3 className="panel-title" style={{ marginBottom: '15px' }}>
+                Adicionar novo frete
+              </h3>
+            </div>
+            <div className="panel-body">
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label htmlFor="author">Nome da transportadora:</label>
+                  <input type="text" className="form-control" name="author" value={author} onChange={this.onChange} placeholder="Logística SA" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="type">Tipo do frete:</label>
+                  <input type="text" className="form-control"name="type" value={type} onChange={this.onChange} placeholder="Tipo do frete" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="value">Valor do frete:</label>
+                  <input type="text" className="form-control" name="value" value={value} onChange={this.onChange} placeholder="1.000,00" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="Date">Date:</label>
+                  <InputMask className="form-control" name="date" mask="99/99/9999" onChange={this.onChange} value={date} placeholder="__/__/____"/>
+                </div>
+                <button type="submit" className="btn btn-success" style={{ float: 'right' }}>Enviar</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

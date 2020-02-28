@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Icon, Card } from 'semantic-ui-react'
+import { Icon, Card } from 'semantic-ui-react'
 import {
   FloatingMenu,
   MainButton,

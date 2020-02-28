@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Header, Image, Divider } from 'semantic-ui-react'
+import { Header, Image } from 'semantic-ui-react'
 
 import logo from '../assets/logo.png'
 
